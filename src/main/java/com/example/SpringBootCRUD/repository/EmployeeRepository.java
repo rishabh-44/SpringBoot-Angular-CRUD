@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, String> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 //    We can write custom query as
 //    @Query("Select e from Employee e where e.age > :age",nativeQuery = true)
