@@ -3,6 +3,7 @@ package com.example.SpringBootCRUD.service;
 import com.example.SpringBootCRUD.model.Employee;
 import com.example.SpringBootCRUD.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +20,6 @@ public class EmployeeService {
     public List<Employee> getEmployeesByCity(String city) {
         return employeeRepository.findAllByCity(city);
     }
-//    public List<Employee> getAllByAge(String age) {
-//        return employeeRepository.getAllByAge(age);
-//    }
 
     public String saveEmployee(Employee employee) {
         if (employeeRepository.existsById(employee.getId())) {
@@ -31,6 +29,7 @@ public class EmployeeService {
             return "Save successfully";
         }
     }
+
     public String putEmployee(Employee employee) {
         if (employeeRepository.existsById(employee.getId())) {
             employeeRepository.save(employee);
@@ -46,5 +45,22 @@ public class EmployeeService {
         } else {
             return "Employee doesn't exists";
         }
+    }
+
+    public Employee createEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public Employee getEmployeeById(Long id) {
+//        return employeeRepository.getReferenceById(id);
+        return employeeRepository.findById(id).get();
+    }
+
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public void delete(Employee employee) {
+        employeeRepository.delete(employee);
     }
 }
